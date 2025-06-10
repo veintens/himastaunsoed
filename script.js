@@ -1,0 +1,1 @@
+// No background blob animation anymore, so this file can be left empty or removed if you don't need JS for other purposes.
