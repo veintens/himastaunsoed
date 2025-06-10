@@ -13,11 +13,24 @@ body {
   padding: 0;
   min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
-  /* Smooth animated gradient background */
   background: linear-gradient(135deg, #254D70, #8DBCC7, #254D70, #8DBCC7);
   background-size: 400% 400%;
   animation: gradientBG 12s ease-in-out infinite;
   overflow: hidden;
+}
+
+.aspect-ratio-16-9 {
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: 16 / 9;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes gradientBG {
@@ -66,22 +79,42 @@ body {
   justify-content: center;
 }
 
-.logo-img {
-  height: 48px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+.logo-text {
+  font-family: 'Coolvetica', Arial, Helvetica, sans-serif;
+  font-size: 2.2rem;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: normal;
+  text-shadow: 0 4px 32px rgba(0,0,0,0.15);
+  opacity: 0;
+  animation: leftFadeIn 0.8s ease forwards;
+  animation-delay: 0.3s;
 }
 
-.nav-links {
-  display: flex;
-  gap: 0.5rem;
-  font-family: 'Raleway', Arial, Helvetica, sans-serif;
-  font-weight: 100;
-  justify-content: center;
-  align-items: center;
+/* Left fade-in animation for logo text */
+@keyframes leftFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
+@keyframes rightFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Right fade animation for header buttons */
 .nav-links a {
   color: #fff;
   background: transparent;
@@ -103,6 +136,18 @@ body {
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  opacity: 0;
+  animation: rightFadeIn 0.8s ease forwards;
+}
+
+.nav-links a:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.nav-links a:nth-child(2) {
+  animation-delay: 0.7s;
+}
+.nav-links a:nth-child(3) {
+  animation-delay: 0.9s;
 }
 
 .nav-links a:hover, 
@@ -160,12 +205,20 @@ p.montserrat-thin {
 
 /* Responsive tweaks */
 @media (max-width: 700px) {
+  .aspect-ratio-16-9 {
+    width: 100vw;
+    height: 56.25vw; /* 9 / 16 = 0.5625 */
+    min-height: 100vh;
+    aspect-ratio: unset;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
   .header-container {
     padding: 0.5rem 1rem;
     gap: 0.7rem;
   }
-  .logo-img {
-    height: 36px;
+  .logo-text {
+    font-size: 1.4rem;
   }
   .nav-links {
     gap: 0.3rem;
